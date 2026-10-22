@@ -25,12 +25,7 @@ and when it is finished the card you met on goes off. In a meeting of three or f
 out, and the rest go on. It is built from our design
 canvas; the canvas is the design, this is the working thing.
 
-**This repository is one person's working build**, and deliberately separate
-from the DECO3500 team repository (`cimi2232/DECO3500`). Nothing here is pushed
-there: a `pre-push` hook refuses any remote under the team account. Git does not
-clone hooks, so the copy that matters is tracked at `tools/hooks/pre-push`;
-after a fresh clone, reinstall it with `cp tools/hooks/pre-push .git/hooks/pre-push`.
-It replaces `on-the-beat-prototype` (the Crew Pact direction), which is retired.
+This build replaces `on-the-beat-prototype` (the Crew Pact direction), which is retired.
 
 ## Run it
 
