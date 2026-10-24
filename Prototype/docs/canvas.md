@@ -1,11 +1,12 @@
 # Where this differs from the canvas, on purpose
 
-- **It asks for a first name**, once, after the venue. The canvas never asks,
+- **It asks for a first name**, once, on the same page as the four promises,
+  where I'M IN waits for it. The canvas never asks,
   but someone has to be named when two people both say yes. A contact is
   asked for only the first time you keep someone, and only shared if they
   keep you too.
 - **A contact both kept can be saved to the phone's own contacts.** The
-  canvas shows it and stops there. We chose on 3 Oct 2026 a SAVE TO
+  canvas shows it and stops there. On 3 Oct 2026 we chose a SAVE TO
   CONTACTS button wherever a contact both people kept is shown: on S11, in
   the AFTER list and under *kept from other nights*. The card (vCard 3.0,
   `app/lib/vcard.js`) is made on the phone from what it already holds and
@@ -15,8 +16,8 @@
 - **FIRST SONG? gets its answer.** The canvas asks for a pick and never says
   what opened. We chose on 3 Oct 2026 that the venue's staff name it:
   the staff page has a *First song* panel with the night's setlist as chips,
-  *NAME IT*, and *TAKE BACK* for a mistake. *NAME IT* asks once first —
-  *SAY IT* or *NOT YET* — because a wristband that called it has sounded
+  *NAME IT*, and *TAKE BACK* for a mistake. *NAME IT* asks once first
+  (*SAY IT* or *NOT YET*), because a wristband that called it has sounded
   before a take back can reach it; changing the track asks again. Every phone at the venue then
   shows `THE OPENER WAS` above its own pick, *You called it.* or *Not this
   time.*, and how many here called it, never who; the wall marks a matching
@@ -27,9 +28,9 @@
   signed-in staff page can name it; a restart keeps it, and 06:00 takes it
   back with the night.
 - **The venue can tell everyone something, and move the times.** The canvas's
-  times are the show's as listed, and nothing reaches every phone at once. The
-  owner chose on 3 Oct 2026 that a signed-in staff page can send a notice to
-  every phone at its venue and move the night's times (see "The staff page").
+  times are the show's as listed, and nothing reaches every phone at once. We
+  chose on 3 Oct 2026 that a signed-in staff page can send a notice to
+  every phone at its venue and move the night's times (`docs/staff-page.md`).
   A notice is the venue's own words, the same for everyone, and says nothing
   about anyone in the room.
 - **Venue distances are gone.** The canvas shows "40 m" beside each show;
@@ -40,8 +41,8 @@
   a user, that a phone alone gets what a band would have given it: the
   meeting number on its match screens, with *no wristband? hold this screen
   up*, and *Look for a wristband or phone showing* on every phone, since
-  nobody is told who wears one; the armed SAY HI reads *Find blue screens &
-  wristbands*; a wave is a toast and a dot until it is seen. How this works
+  nobody is told who wears one. The armed SAY HI reads *Find blue screens &
+  wristbands*, and a wave is a toast and a dot until it is seen. How this works
   also says what the four cards do and that a match needs both.
 - **A fourth card, LET'S GUESS!** The canvas has three. We chose on
   13 Oct 2026, from the team's v3 flow, a quiz card: answer tonight's
@@ -59,13 +60,13 @@
   revision 6 draws. `SCAN IT INSTEAD` needs something to scan, and the code
   also lets a phone's own camera open the app.
 - **A second button, and other timings.** Revision 6 gives the wristband a
-  single button — a 3 s wake, and a 1 s hold for NOT NOW — and no second
-  action. We chose on 24 Sep 2026: the side button (KEY2,
+  single button (a 3 s wake, and a 1 s hold for NOT NOW) and no second
+  action. We chose on 24 Sep 2026 that the side button (KEY2,
   M5Unified's `BtnB` on every supported board, as a StickS3 and a StickC Plus
   bore out; on a StickC Plus the power button only turns the face over and,
-  held, turns the band off — *Off and on*)
-  changes the armed card, so the phone can stay in a pocket; a press wakes the
-  face for six seconds, long enough to read a preview; NOT NOW is a hold of
+  held, turns the band off; see *Off and on*)
+  changes the armed card, so the phone can stay in a pocket. A press wakes the
+  face for six seconds, long enough to read a preview. NOT NOW is a hold of
   1.5 s, longer than a bump in a crowd. Every timing is a named constant, in
   `band_logic.h` and `app/lib/wrist.js`, because they are guesses until worn.
 - **A connected wristband keeps its person in the room for up to an hour**
@@ -106,18 +107,18 @@
   lists the people whose wristband yours can hear. On a crowded floor that is
   nearly everyone, so the list is the five heard most strongly, which is also
   S5's own limit of five. People without a band cannot be heard, which says
-  nothing about where they are, so they are listed as before; we chose
+  nothing about where they are, so they are listed as before. We chose
   that on 26 Sep 2026.
 - **A marker names an area only when it is heard clearly.** Revision 6 takes
   the loudest marker. Far from every marker the loudest is still some marker,
   heard faintly across the room, so it names a band only at -56 dBm or
-  louder, and otherwise the person stays `in this room`: we chose on
+  louder, and otherwise the person stays `in this room`. We chose on
   27 Sep 2026 that it is better not to say than to say it wrong. A third
   marker, `somewhere out the back`, which the design brief's list of bands already
   has, is allowed; revision 6 names only the bar and the stage.
 - **A staff page** at `/staff`, which the canvas does not have: someone has
-  to read the reports the canvas says go to the venue team. We chose
-  on 28 Sep 2026 a page per venue, signed in with a passcode only the person running the relay sets.
+  to read the reports the canvas says go to the venue team. On 28 Sep 2026
+  we chose a page per venue, signed in with a passcode only we set.
 - **Report asks for a few words**, optional and at most 200 characters. The
   canvas's Report is one tap. We chose on 28 Sep 2026 to ask, since
   "someone was reported near the bar" alone gives staff little to act on.
@@ -129,3 +130,28 @@
   beside it. Which side is up is held, not worked out (see the firmware
   section). The browser stand-in at `/band` stays portrait, as the canvas
   draws it.
+- **A meeting can be three or four people.** The canvas meets two. Someone
+  who says yes both ways, on the same card, with a person already in a
+  meeting joins it only when everyone already in it says yes; they all share
+  one number and one spot, and a meeting is full at four (`GROUP_MAX`).
+- **The people in a meeting can say where they are.** Between `MEET` and
+  found, the canvas leaves them a number and nothing else. Since 21 Oct 2026,
+  after the trade show, they can send each other short notes, a ready line
+  or a few words of their own, and HOLD IT UP shows the number full screen to
+  hold above a crowd. Only the meeting sees the notes, and they close once
+  everyone has found everyone.
+- **LET'S FINISH ends a meeting kindly.** The canvas has no way out of a
+  meeting but a block. LET'S FINISH asks the other side, who gets a
+  thank-you and can say not yet; once it is finished, the card you met on
+  goes off. In a meeting of three or four it takes only you out. It is on
+  the wristband too.
+- **A poster for the venue's wall**, at `/poster/<venue>`, which the canvas
+  does not have: what this is, how to play, a code into the app, and tonight
+  live from the relay. It came out of the 14 Oct 2026 user test.
+- **A shorter way in.** Since 21 Oct 2026, after the trade show, someone
+  coming back the same night skips the start screen, and the wristband
+  practice can be left at once with SKIP PRACTICE.
+- **The wristband feels for two moves.** Revision 6's band has buttons only.
+  On `SOMEONE WAVED`, raising the wrist and waving waves back; on the meeting
+  number, knocking two bands together says you found each other
+  (*The wristband*, `docs/wristband.md`).

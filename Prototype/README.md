@@ -11,11 +11,11 @@ https://github.com/user-attachments/assets/285e91b7-d538-46fe-ac64-047810623006
 
 </details>
 
-A phone app for one night at one venue. You arm one of four cards — **SAY HI**
+A phone app for one night at one venue. You arm one of four cards: **SAY HI**
 (your screen turns blue: hello), **FIRST SONG?** (pick the opening track and
 like other people's picks), **LET'S DANCE!** (five seconds of you dancing, or one pose, on a
 shared floor), **LET'S GUESS!** (tonight's quiz: answer it, then team up with
-someone else who finished) — and when two people both say yes, and only then, each learns
+someone else who finished). When two people both say yes, and only then, each learns
 the other's first name and where to meet. A meeting can grow to three or four: a newcomer
 joins only when everyone already in it says yes, and they all share one number. Until everyone has found each
 other, the people in a meeting can tell each other where they are in a few words, and hold the number up full
@@ -23,7 +23,7 @@ screen over a crowd. Once you have talked, **LET'S FINISH**
 ends the meeting kindly: the other side gets a thank-you and can say not yet,
 and when it is finished the card you met on goes off. In a meeting of three or four it takes only you
 out, and the rest go on. It is built from our design
-canvas; the canvas is the design, this is the working thing.
+canvas. The canvas is the design, and this is the working thing.
 
 This build replaces `on-the-beat-prototype` (the Crew Pact direction), which is retired.
 
@@ -39,7 +39,7 @@ npm run tunnel       # an https address for real phones (cloudflared must be ins
 
 Phones need https: the camera, the screen wake lock and the offline shell are
 refused on plain http, so use `npm run tunnel` for real phones. The relay is
-also always on at **https://on-the-beat.fly.dev** (one Fly.io machine in
+also always on at https://on-the-beat.fly.dev (one Fly.io machine in
 Sydney). The night ends at 06:00 venue time; set it with
 `NIGHT_TZ=Australia/Brisbane`. Every other command, CI, deploying and the
 staff passcodes are in [docs/running.md](docs/running.md).
@@ -72,8 +72,8 @@ turns it on. A phone alone gets the same night.
 floor, a notice to every phone, moved set times, and naming the opening song.
 
 **The poster** (`/poster/<venue>`) is for a venue's wall or a screen by the
-door: what this is, how to play, a code into the app, and tonight live from
-the relay — the act, the times and how many people are playing.
+door. It shows what this is, how to play, a code into the app, and tonight live
+from the relay (the act, the times and how many people are playing).
 
 ## Documentation
 
