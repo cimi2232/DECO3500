@@ -1,0 +1,141 @@
+// ON THE BEAT — the staff page's words and order (app/staff/list.js), that the build made the page, and that the
+// offline shell never keeps it.
+
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { existsSync, readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import vm from 'node:vm';
+import { REFUSED, freshIds, openCards, openCount, ordered, timeOf, titleFor, whereLine, whoLine } from '../app/staff/list.js';
+
+const root = fileURLToPath(new URL('..', import.meta.url));
+const report = (x) => ({
+  id: 'r1', at: 0, about: 'P-4F2A91', times: 1, people: 1, bandNow: 'near the bar', bandThen: 'near the bar',
+  fromThen: 'by the stage', why: '', handledAt: 0, ...x,
+});
+
+test('open reports come first, newest first, then handled ones, newest first', () => {
+  const list = [report({ id: 'r4', handledAt: 9 }), report({ id: 'r3' }), report({ id: 'r2', handledAt: 5 }), report({ id: 'r1' })];
+  assert.deepEqual(ordered(list).map((r) => r.id), ['r3', 'r1', 'r4', 'r2']);
+  assert.equal(openCount(list), 2);
+});
+
+test('who a report is about: a tag, how often and by how many — or something else', () => {
+  assert.equal(whoLine(report({ times: 3, people: 2 })), 'About someone · P-4F2A91 · reported 3 times by 2 people');
+  assert.equal(whoLine(report()), 'About someone · P-4F2A91 · reported once by 1 person');
+  assert.equal(whoLine(report({ about: null, times: 0, people: 0 })), 'Something else');
+});
+
+test('where: now, then, and the reporter — and a person who left', () => {
+  assert.equal(whereLine(report()), 'now near the bar · then near the bar · reporter was by the stage');
+  assert.equal(whereLine(report({ bandNow: 'left' })), 'now: left · then near the bar · reporter was by the stage');
+  assert.equal(whereLine(report({ about: null, bandNow: null, bandThen: null })), 'reporter was by the stage');
+});
+
+test('a new report is one the last list did not have; the first list has none', () => {
+  assert.deepEqual(freshIds(null, [report()]), []);
+  assert.deepEqual(freshIds(new Set(['r1']), [report({ id: 'r2' }), report()]), ['r2']);
+});
+
+test('the tab counts the open ones, and a time reads as the venue\'s clock', () => {
+  assert.equal(titleFor('The Roundhouse, Camden · BRUNO MARS', 2), '(2) Staff · The Roundhouse, Camden · BRUNO MARS');
+  assert.equal(titleFor('The Roundhouse, Camden · BRUNO MARS', 0), 'Staff · The Roundhouse, Camden · BRUNO MARS');
+  assert.match(timeOf(Date.UTC(2026, 8, 28, 10, 5)), /^\d{2}:\d{2}$/);
+});
+
+test("the cards staff can still close: never one staff closed, nor LET'S GUESS where there is no quiz", () => {
+  const ids = ['hi', 'song', 'dance', 'guess'];
+  assert.deepEqual(openCards(ids, [], true), ids);
+  assert.deepEqual(openCards(ids, ['song'], false), ['hi', 'dance']);
+  assert.deepEqual(openCards(ids, ['hi', 'song'], false), ['dance'], 'one left: its CLOSE is off');
+});
+
+test('every refusal the relay can give has words of its own', () => {
+  for (const why of ['no staff page', 'wrong code', 'too many tries', 'expired', 'bad staff', 'too many venues', 'signed out']) assert.ok(REFUSED[why], why);
+  assert.equal(new Set(Object.values(REFUSED)).size, Object.keys(REFUSED).length);
+  assert.match(REFUSED.expired, /new night, or the passcode was changed/);
+  assert.doesNotMatch(REFUSED.expired, /restarted/, 'a restart no longer signs anyone out');
+});
+
+test('the build made the staff page', () => {
+  const page = readFileSync(root + 'dist/staff.html', 'utf8');
+  assert.match(page, /<title>Staff · On The Beat<\/title>/);
+  assert.match(page, /src="\/assets\/[^"]+\.js"/);
+});
+
+test('the build gives the staff page its own manifest and its own worker', () => {
+  const page = readFileSync(root + 'dist/staff.html', 'utf8');
+  assert.match(page, /<link rel="manifest" href="\/staff\.webmanifest">/);
+  assert.match(page, /<link rel="apple-touch-icon" href="\/icon-192\.png">/);
+  const manifest = JSON.parse(readFileSync(root + 'dist/staff.webmanifest', 'utf8'));
+  assert.equal(manifest.id, '/staff');
+  assert.equal(manifest.start_url, '/staff');
+  assert.equal(manifest.scope, '/staff');
+  assert.equal(manifest.display, 'standalone', 'what iOS needs before it allows Web Push');
+  assert.ok(existsSync(root + 'dist/staff-sw.js'));
+});
+
+test('the offline shell never keeps the staff page, nor answers for it', () => {
+  const listeners = {};
+  const context = {
+    self: { addEventListener: (type, f) => { listeners[type] = f; } },
+    location: { origin: 'https://otb.test' },
+    URL,
+    caches: {},
+    fetch: () => new Promise(() => {}),
+  };
+  vm.runInNewContext(readFileSync(root + 'app/public/sw.js', 'utf8'), context);
+  const answered = (path) => {
+    let took = false;
+    listeners.fetch({ request: { url: 'https://otb.test' + path, method: 'GET', mode: 'navigate' }, respondWith: () => { took = true; } });
+    return took;
+  };
+  assert.equal(answered('/staff'), false);
+  assert.equal(answered('/staff/'), false);
+  assert.equal(answered('/staff.html'), false);
+  // The poster is live or nothing too: kept as the shell, a phone that has the app would open the poster offline.
+  assert.equal(answered('/poster'), false);
+  assert.equal(answered('/poster/moth-club-kayo-lane'), false);
+  assert.equal(answered('/poster.html'), false);
+  assert.equal(answered('/'), true, 'the app itself is still kept');
+  assert.equal(answered('/tonight'), true);
+});
+
+// The shell worker's own side of the fonts being the page's (scripts/fonts.mjs): it once kept Google's, in a cache of its own.
+function shellWorker(caches) {
+  const listeners = {};
+  const context = {
+    self: { addEventListener: (type, f) => { listeners[type] = f; }, clients: { claim: () => Promise.resolve() } },
+    location: { origin: 'https://otb.test' },
+    URL,
+    caches,
+    fetch: () => new Promise(() => {}),
+  };
+  vm.runInNewContext(readFileSync(root + 'app/public/sw.js', 'utf8'), context);
+  return listeners;
+}
+
+test('the offline shell leaves another host\'s requests to the browser, and keeps the page\'s own fonts for good', () => {
+  const listeners = shellWorker({ open: () => new Promise(() => {}) });
+  const answered = (url) => {
+    let took = false;
+    listeners.fetch({ request: { url, method: 'GET', mode: 'cors' }, respondWith: () => { took = true; } });
+    return took;
+  };
+  assert.equal(answered('https://fonts.googleapis.com/css2?family=Chewy&display=swap'), false);
+  assert.equal(answered('https://fonts.gstatic.com/s/chewy/v18/uK_94ruUb-k-wn52KjI.woff2'), false);
+  assert.equal(answered('https://elsewhere.example/script.js'), false);
+  assert.equal(answered('https://otb.test/assets/chewy-latin-BFhrjfYU.woff2'), true, 'a built asset, kept cache first');
+});
+
+test('the shell that takes over drops the shell and the font cache a phone kept from before', async () => {
+  const dropped = [];
+  const listeners = shellWorker({
+    keys: async () => ['otb-shell-v2', 'otb-fonts-v1', 'otb-shell-v3', 'something-else'],
+    delete: async (key) => { dropped.push(key); },
+  });
+  let done;
+  listeners.activate({ waitUntil: (p) => { done = p; } });
+  await done;
+  assert.deepEqual(dropped.sort(), ['otb-fonts-v1', 'otb-shell-v2', 'something-else']);
+});

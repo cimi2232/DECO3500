@@ -1,0 +1,76 @@
+// ON THE BEAT — where the night is, from the show's times and the clock.
+
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { nightOf, nightProgress, phaseLine, phaseOf, timesLine } from '../app/lib/phase.js';
+
+const ROUNDHOUSE = { act: 'BRUNO MARS', doors: '19:00', support: '20:00', break: '20:45', headline: '21:30', end: '23:00' };
+const at = (hh, mm, day = 23) => new Date(2026, 8, day, hh, mm);
+
+test('each phase begins at its own time, as the venue wrote it', () => {
+  assert.deepEqual(
+    [at(18, 0), at(19, 10), at(20, 0), at(20, 45), at(21, 30), at(23, 0)].map((d) => phaseOf(ROUNDHOUSE, d)),
+    ['DOORS', 'DOORS', 'SUPPORT', 'BREAK', 'HEADLINE', 'AFTER'],
+  );
+});
+
+test('the line under the bar counts down to what comes next', () => {
+  assert.equal(phaseLine(ROUNDHOUSE, at(18, 0)), 'DOORS · open at 19:00', 'before doors says when, not how long');
+  assert.equal(phaseLine(ROUNDHOUSE, at(19, 20)), 'DOORS OPEN · support in 40 min');
+  assert.equal(phaseLine(ROUNDHOUSE, at(20, 27)), 'SUPPORT ACT · break in 18 min');
+  assert.equal(phaseLine(ROUNDHOUSE, at(21, 18)), 'BREAK · headline in 12 min');
+  assert.equal(phaseLine(ROUNDHOUSE, at(21, 40)), 'HEADLINE · bruno mars, on now');
+  assert.equal(phaseLine(ROUNDHOUSE, at(23, 5)), 'AFTER · lights up, last calls');
+  assert.equal(phaseLine(ROUNDHOUSE, at(14, 0)), 'DOORS · open at 19:00', 'an afternoon demo sits before doors');
+  assert.equal(phaseLine({ ...ROUNDHOUSE, support: '21:30' }, at(19, 5)), 'DOORS OPEN · support in 2 h 25 min');
+});
+
+test('a show that runs past midnight is still tonight, and so is the walk home', () => {
+  const late = { act: 'SABLE COURT', doors: '22:00', support: '23:00', break: '23:40', headline: '00:10', end: '01:30' };
+  assert.equal(phaseOf(late, at(23, 50)), 'BREAK');
+  assert.equal(phaseOf(late, at(0, 20, 24)), 'HEADLINE');
+  assert.equal(phaseOf(late, at(2, 0, 24)), 'AFTER');
+  assert.equal(nightOf(at(2, 0, 24)), '2026-09-23', 'two in the morning belongs to the night before');
+  assert.equal(nightOf(at(6, 0, 24)), '2026-09-24', 'six is a new day');
+});
+
+test('a venue nobody listed gets an ordinary evening inside, but never shows a time nobody gave (N1)', () => {
+  assert.equal(phaseOf({ act: 'THE LANTERN' }, at(21, 45)), 'HEADLINE', 'the phase still runs on an ordinary evening');
+  assert.equal(timesLine({}), 'no times yet');
+  assert.equal(timesLine({ act: 'THE LANTERN' }), 'no times yet');
+  assert.equal(phaseLine({ act: 'THE LANTERN' }, at(13, 13)), 'no times yet');
+  assert.equal(phaseLine({ act: 'THE LANTERN' }, at(21, 45)), 'no times yet');
+});
+
+test('N1: with some times given, only those are shown, and no countdown runs to a time nobody gave', () => {
+  assert.equal(timesLine({ headline: '21:00' }), 'Headline 21:00');
+  assert.equal(timesLine({ doors: '19:30', headline: '21:00' }), 'Doors 19:30 · Headline 21:00');
+  // Doors given, support not: open, but no "support in" to an invented 20:00.
+  assert.equal(phaseLine({ doors: '19:30' }, at(19, 40)), 'DOORS OPEN');
+  assert.equal(phaseLine({ doors: '19:30' }, at(18, 0)), 'DOORS · open at 19:30');
+  // Doors not given: before an invented doors there is nothing to say "open at".
+  assert.equal(phaseLine({ headline: '21:00' }, at(18, 0)), 'DOORS');
+  assert.equal(phaseLine({ headline: '21:00' }, at(20, 50)), 'BREAK · headline in 10 min', 'a countdown to a given time stands');
+  assert.equal(phaseLine({ support: '20:00' }, at(20, 10)), 'SUPPORT ACT', 'no break given, no countdown to one');
+});
+
+test('F4: whereLine() names the act and the venue as listed, so the phone says where you are after joining', async () => {
+  const { whereLine } = await import('../app/lib/phase.js');
+  assert.equal(whereLine({ act: 'KAYO LANE', venue: 'Moth Club, Hackney' }), 'KAYO LANE · Moth Club, Hackney');
+  assert.equal(whereLine({ venue: 'Moth Club, Hackney' }), 'Moth Club, Hackney');
+  assert.equal(whereLine({ act: 'KAYO LANE' }), 'KAYO LANE');
+  assert.equal(whereLine(null), '');
+});
+
+test('the bar over the phases: each phase fills its own fifth, by the clock', () => {
+  const p = (hh, mm) => Math.round(nightProgress(ROUNDHOUSE, at(hh, mm)) * 1000) / 1000;
+  assert.equal(p(18, 0), 0, 'before doors: empty');
+  assert.equal(p(19, 0), 0, 'doors open: the first fifth starts');
+  assert.equal(p(19, 30), 0.1, 'half way from doors to support: half the first fifth');
+  assert.equal(p(20, 0), 0.2, 'support starts its own fifth');
+  assert.equal(p(21, 30), 0.6, 'the headline at three fifths');
+  assert.equal(p(22, 15), 0.7, 'half the headline');
+  assert.equal(p(23, 30), 0.9, 'half an hour after the end: half the last fifth');
+  assert.equal(p(1, 0), 1, 'long after: full');
+  assert.equal(nightProgress({ act: 'KAYO' }, at(20, 0)), null, 'no times given: no progress made up');
+});

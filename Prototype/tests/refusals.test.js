@@ -1,0 +1,30 @@
+// ON THE BEAT — what a phone says aloud when the relay refuses something it asked for
+//.
+
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { refusalWords } from '../app/lib/refusals.js';
+
+test('the phone has words for the refusals it speaks, and none for the rest', () => {
+  assert.equal(refusalWords({ t: 'error', why: 'clip refused' }), "that didn't go. they may have left, or gone quiet.");
+  assert.equal(refusalWords({ t: 'error', why: 'report refused' }), 'too many reports just now. please tell a member of staff.');
+  assert.equal(refusalWords({ t: 'error', why: 'clip too fast' }), 'one at a time. give it a few seconds before the next clip.');
+  for (const m of [{ t: 'error', why: 'bad join' }, { t: 'error', why: 'constructor' }, { t: 'error', why: '__proto__' },
+    { t: 'view' }, { t: 'refused', why: 'report refused' }, null, undefined]) {
+    assert.equal(refusalWords(m), null, JSON.stringify(m));
+  }
+});
+
+test('the app speaks its refusals through that lookup, not one by one', () => {
+  const app = readFileSync(new URL('../app/App.jsx', import.meta.url), 'utf8');
+  assert.match(app, /refusalWords\(m\)/);
+  assert.doesNotMatch(app, /why === 'clip refused'/);
+});
+
+test('every refusal of a venue card fill is spoken, each in its own words', async () => {
+  const { WHERE } = await import('../app/copy.js');
+  for (const why of ['taken', 'limit', 'full', 'listed', 'bad']) {
+    assert.equal(refusalWords({ t: 'error', why: 'fill ' + why }), WHERE[why], why);
+  }
+});

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "suncorp-stadium-bruno-mars",
+    "act": "BRUNO MARS",
+    "venue": "Suncorp Stadium, Brisbane",
+    "lat": -27.4647, "lon": 153.0094,
+    "spots": [
+      "by the merch stand on your level",
+      "at the bar nearest your gate",
+      "by the food stalls on your concourse"
+    ],
+    "setlist": ["Risk It All", "24K Magic", "Treasure", "Locked Out of Heaven", "Just the Way You Are", "Uptown Funk"],
+    "quiz": [
+      {"q": "Which city was Bruno Mars born in?", "options": ["Los Angeles", "Honolulu", "Las Vegas", "Miami"], "answer": 1, "fact": "Honolulu, Hawaii, on 8 October 1985."},
+      {"q": "What is Bruno Mars's birth name?", "options": ["Peter Gene Hernandez", "Bruno Gene Martinez", "Brian Peter Mars", "Peter Bruno Garcia"], "answer": 0, "fact": "His father called him Bruno when he was two."},
+      {"q": "From the age of four, he performed in Honolulu as which singer?", "options": ["Michael Jackson", "Elvis Presley", "Little Richard", "James Brown"], "answer": 1, "fact": "As \"Little Elvis\", with his family's band, and in the 1992 film Honeymoon in Vegas."},
+      {"q": "What was his debut studio album, in 2010?", "options": ["Unorthodox Jukebox", "24K Magic", "Doo-Wops & Hooligans", "An Evening with Silk Sonic"], "answer": 2, "fact": "It carried \"Just the Way You Are\" and \"Grenade\"."},
+      {"q": "\"Locked Out of Heaven\" is from which album?", "options": ["Doo-Wops & Hooligans", "Unorthodox Jukebox", "24K Magic", "Uptown Special"], "answer": 1, "fact": "His second album, from 2012."},
+      {"q": "Which of his albums won the Grammy for Album of the Year in 2018?", "options": ["Doo-Wops & Hooligans", "Unorthodox Jukebox", "24K Magic", "An Evening with Silk Sonic"], "answer": 2, "fact": "24K Magic, at the 60th Grammy Awards."},
+      {"q": "\"Uptown Funk\" (2014) is whose single, featuring Bruno Mars?", "options": ["Mark Ronson", "Pharrell Williams", "Calvin Harris", "Daft Punk"], "answer": 0, "fact": "It spent 14 weeks at number one in the US."},
+      {"q": "Silk Sonic is Bruno Mars and who?", "options": ["Anderson .Paak", "Pharrell Williams", "The Weeknd", "Childish Gambino"], "answer": 0, "fact": "Their \"Leave the Door Open\" won Record and Song of the Year."},
+      {"q": "In which year did he first headline the Super Bowl halftime show?", "options": ["2012", "2014", "2016", "2018"], "answer": 1, "fact": "Super Bowl XLVIII, in February 2014."},
+      {"q": "\"APT.\" (2024) is his duet with whom?", "options": ["Lady Gaga", "Rosé", "Dua Lipa", "Lisa"], "answer": 1, "fact": "Rosé of BLACKPINK. The same year he sang \"Die with a Smile\" with Lady Gaga."}
+    ]
+  },
+  {
+    "id": "test-night-zara-larsson",
+    "act": "ZARA LARSSON",
+    "venue": "ON THE BEAT test night",
+    "lat": -27.4769, "lon": 153.0281,
+    "doors": "19:00", "support": "19:45", "break": "20:30", "headline": "20:45", "end": "22:30",
+    "spots": ["by the door", "at the end of the bar", "by the cloakroom"],
+    "setlist": ["Lush Life", "Never Forget You", "Symphony", "Ain't My Fault", "This One's for You", "Ruin My Life"],
+    "quiz": [
+      {"q": "Which country is Zara Larsson from?", "options": ["Norway", "Sweden", "Denmark", "Finland"], "answer": 1, "fact": "She grew up in Stockholm."},
+      {"q": "At 10, Zara won a TV talent show. Which one?", "options": ["Idol", "The Voice", "Talang (Sweden's Got Talent)", "The X Factor"], "answer": 2, "fact": "She won Talang in 2008."},
+      {"q": "Which song was the official song of UEFA Euro 2016?", "options": ["This One's for You", "Lush Life", "Symphony", "Ain't My Fault"], "answer": 0, "fact": "David Guetta featuring Zara Larsson."},
+      {"q": "Who did Zara team up with on \"Symphony\"?", "options": ["Calvin Harris", "Kygo", "Marshmello", "Clean Bandit"], "answer": 3, "fact": "Clean Bandit featuring Zara Larsson, a UK number one in 2017."},
+      {"q": "Her 2024 album shares its name with a planet. Which one?", "options": ["Mars", "Venus", "Saturn", "Jupiter"], "answer": 1, "fact": "Venus came out in February 2024."},
+      {"q": "Who sings with Zara on \"Never Forget You\"?", "options": ["MNEK", "Ty Dolla $ign", "Sam Smith", "Craig David"], "answer": 0, "fact": "MNEK and Zara Larsson, 2015: her first UK top 10, at number 5."},
+      {"q": "Her first number one in Sweden, in 2013, was which song?", "options": ["Lush Life", "Uncover", "Rooftop", "Wow"], "answer": 1, "fact": "\"Uncover\" topped the Swedish chart in February 2013."},
+      {"q": "What was Zara's first album released around the world, in 2017?", "options": ["Poster Girl", "So Good", "Venus", "Introducing"], "answer": 1, "fact": "So Good came out on 17 March 2017."},
+      {"q": "How high did \"Lush Life\" climb in the UK singles chart?", "options": ["Number 1", "Number 3", "Number 10", "Number 20"], "answer": 1, "fact": "It peaked at number 3 in spring 2016."},
+      {"q": "Her 2025 album is named after a Swedish summer where the sun never sets. What is it called?", "options": ["Midnight Sun", "Northern Lights", "Summer Nights", "Golden Hour"], "answer": 0, "fact": "Midnight Sun came out in September 2025."}
+    ]
+  }
+]
