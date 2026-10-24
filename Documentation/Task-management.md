@@ -1,0 +1,3 @@
+# Task management
+
+We used a collaborative [Miro board](https://miro.com/app/board/uXjVH3-thG8=/?share_link_id=937577129464) to brainstorm and record the process rather than the GitHub Project function.
