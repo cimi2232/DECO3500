@@ -2,9 +2,6 @@
 
 Material from our two rounds of user testing, taken from our team Miro board.
 
-# Protocol
-<img width="1228" height="776" alt="p1" src="https://github.com/user-attachments/assets/a18bbeee-affa-4117-a341-aa6e1225d89c" />
-<img width="1159" height="772" alt="p2" src="https://github.com/user-attachments/assets/8e276d38-65e0-464a-9d43-41ff5c4d4dcd" />
 
 
 ## Testing round 1 (Week 8, studio)
@@ -17,8 +14,6 @@ Peers tried the Find One Friend flow in the Figma prototype with coloured plasti
 | [week8-key-findings.png](week8-key-findings.png) | The key findings and the new idea that followed: give people a choice of artist-themed icebreakers instead of asking everyone to dance |
 | [round1-wristbands.jpg](round1-wristbands.jpg), [round1-dance.jpg](round1-dance.jpg) | Photos from the session: matching coloured wristbands, and trying the dance challenge. Cropped and blurred so no one can be recognised |
 
-<img width="3508" height="4947" alt="key1" src="https://github.com/user-attachments/assets/532a094c-e9f8-4478-ab0f-a3db0b62c462" />
-<img width="3508" height="4947" alt="key2" src="https://github.com/user-attachments/assets/9162bd48-bfe1-49ef-9d42-2c98e3d1a989" />
 
 
 ## Testing round 2 (Week 11, outside the Zara Larsson concert at Riverstage)
