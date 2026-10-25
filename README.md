@@ -56,7 +56,7 @@ other command, the wristband firmware and deploying are in
 |---|---|
 | [Prototype/](Prototype/) | the working prototype: phone app, relay server, wristband firmware and tests ([its README](Prototype/README.md)) |
 | [Prototype/docs/](Prototype/docs/) | how it works, the four promises, abuse resistance, the wristband guide, known limits |
-| [Documentation/](Documentation/) | our A2 poster, the design proposal, the user interviews and their analysis, and [where we managed tasks](Documentation/Task-management.md) |
+| [Documentation/](Documentation/) | our A2 poster, the design proposal, the user interviews and their analysis, [how the design changed](Documentation/Design/), [our two testing rounds](Documentation/Evaluation/) and [where we managed tasks](Documentation/Task-management.md) |
 | [Wiki](../../wiki) | Design Process Overview, Ethical Considerations and our stand-up records |
 
 `Prototype/` carries the prototype's whole development history: 26 commits,
