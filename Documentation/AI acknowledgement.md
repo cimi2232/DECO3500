@@ -1,8 +1,8 @@
-## AI acknowledgement
+# AI acknowledgement
 
 Details of use
 
-# Claude
+## Claude
 Prototype development, 
 Writing clarity refinement, Ideation, 
 Image creation
@@ -12,12 +12,11 @@ Image creation
 •	Create concept visual (context features shared)
 •	Refine for the 2min pitch (content shared)
 
-# lovable.dev, 
-# UX Pilot
+## lovable.dev, UX Pilot
 UI Ideation	
 •	Can you make the mobile prototype based on these ux findings (context shared)
 
-#Perplexity
+## Perplexity
 User interview question brainstorming	
 •	Give me some references for research questions (context offered)
 
