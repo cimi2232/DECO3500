@@ -2,6 +2,11 @@
 
 Material from our two rounds of user testing, taken from our team Miro board.
 
+# Protocol
+<img width="1159" height="772" alt="p2" src="https://github.com/user-attachments/assets/95a21326-7e0d-43cb-885f-8b4bdcd9733a" />
+![Uploading p1.png…]()
+
+
 ## Testing round 1 (Week 8, studio)
 
 Peers tried the Find One Friend flow in the Figma prototype with coloured plastic wristbands.
