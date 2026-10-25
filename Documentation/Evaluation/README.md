@@ -3,8 +3,8 @@
 Material from our two rounds of user testing, taken from our team Miro board.
 
 # Protocol
-<img width="1159" height="772" alt="p2" src="https://github.com/user-attachments/assets/95a21326-7e0d-43cb-885f-8b4bdcd9733a" />
-![Uploading p1.png…]()
+<img width="1228" height="776" alt="p1" src="https://github.com/user-attachments/assets/a18bbeee-affa-4117-a341-aa6e1225d89c" />
+<img width="1159" height="772" alt="p2" src="https://github.com/user-attachments/assets/8e276d38-65e0-464a-9d43-41ff5c4d4dcd" />
 
 
 ## Testing round 1 (Week 8, studio)
