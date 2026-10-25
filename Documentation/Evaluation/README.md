@@ -17,6 +17,10 @@ Peers tried the Find One Friend flow in the Figma prototype with coloured plasti
 | [week8-key-findings.png](week8-key-findings.png) | The key findings and the new idea that followed: give people a choice of artist-themed icebreakers instead of asking everyone to dance |
 | [round1-wristbands.jpg](round1-wristbands.jpg), [round1-dance.jpg](round1-dance.jpg) | Photos from the session: matching coloured wristbands, and trying the dance challenge. Cropped and blurred so no one can be recognised |
 
+<img width="3508" height="4947" alt="key1" src="https://github.com/user-attachments/assets/532a094c-e9f8-4478-ab0f-a3db0b62c462" />
+<img width="3508" height="4947" alt="key2" src="https://github.com/user-attachments/assets/9162bd48-bfe1-49ef-9d42-2c98e3d1a989" />
+
+
 ## Testing round 2 (Week 11, outside the Zara Larsson concert at Riverstage)
 
 A pilot, then a contextual inquiry with fans in the queue, using the v3 flow.
