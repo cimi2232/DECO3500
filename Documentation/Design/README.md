@@ -1,11 +1,12 @@
 # Design
 
-How the idea changed, taken from our team Miro board. Participant names are blacked out.
+How the idea changed, mostly taken from our team Miro board. Participant names are blacked out.
 
 | File | What it shows |
 |---|---|
 | [01-affinity-map.png](01-affinity-map.png) | Our affinity map board: the problem statement, the two themes we grouped findings into (social connection and navigation, with On The Beat where they overlap), and the affinity maps of two interviews, each grouping a participant's pre-concert experience into branches such as safety, waiting, group coordination, wayfinding and the emotional journey |
 | [02-first-concept.png](02-first-concept.png) | Our first concept from the proposal: a shared pre-show planner for a group of friends. It was about people who already knew each other, which is why we later turned to strangers |
+| [06-crew-pact-prototype.png](06-crew-pact-prototype.png) | Crew Pact, the working prototype of that concept, which a participant tried in early September: joining a crew, with what joining lets the others see, and the pact board where friends fit what they want to do between doors and the support act. Captured from the prototype itself; the show and the crew are sample data |
 | [03-experience-requirements.png](03-experience-requirements.png) | The second-round interviews (n=4): quotes coded, grouped into themes, and turned into three experience requirements |
 | [04-week8-figma-prototype.png](04-week8-figma-prototype.png) | The Figma prototype for testing round 1 in Week 8, with the matching, talking, interacting flow above it. Its SAY HI, FIRST SONG? and LET'S DANCE! cards became the cards in the working prototype |
 
