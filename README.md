@@ -68,6 +68,7 @@ other command, the wristband firmware and deploying are in
 | **User testing, rounds 1 and 2** | [Documentation/Evaluation/](Documentation/Evaluation/) and [Prototype Testing and Iteration](Documentation/Prototype%20Testing%20and%20Iteration.md) |
 | **Testing photos and pilot video** | [Documentation/images/](Documentation/images/) |
 | **Task management** | [Documentation/Task-management.md](Documentation/Task-management.md) |
+| **Team Miro board** (replaces GitHub Projects) | [Miro board](https://miro.com/app/board/uXjVH3-thG8=/?share_link_id=937577129464): brainstorming, affinity maps, testing plans and findings |
 | **AI acknowledgement** | [Documentation/AI acknowledgement.md](Documentation/AI%20acknowledgement.md) |
 
 `Prototype/` carries the prototype's whole development history: 26 commits,
