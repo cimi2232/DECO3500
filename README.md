@@ -52,20 +52,31 @@ other command, the wristband firmware and deploying are in
 
 ## What is in this repository
 
-| Where | What |
+| What | Where |
 |---|---|
-| [Prototype/](Prototype/) | the working prototype: phone app, relay server, wristband firmware and tests ([its README](Prototype/README.md)) |
-| [Prototype/docs/](Prototype/docs/) | how it works, the four promises, abuse resistance, the wristband guide, known limits |
-| [Documentation/](Documentation/) | our A2 poster, the design proposal, the user interviews and their analysis, [how the design changed](Documentation/Design/), [our two testing rounds](Documentation/Evaluation/) and [where we managed tasks](Documentation/Task-management.md) |
-| [Wiki](../../wiki) | Design Process Overview, Ethical Considerations and our stand-up records |
+| **Design Process Overview** | [Wiki page](../../wiki/Design-process-overview) |
+| **Ethical Considerations** | [Wiki page](../../wiki/Ethical-considerations) |
+| **Stand-up records** | [Wiki page](../../wiki/Stand%E2%80%90up-records) |
+| **Prototype, live** | https://on-the-beat.fly.dev, steps in [Try the prototype](#try-the-prototype) |
+| **Prototype source code** | [Prototype/](Prototype/): phone app, relay server, wristband firmware and tests ([its README](Prototype/README.md)) |
+| **Prototype technical docs** | [Prototype/docs/](Prototype/docs/): how it works, abuse resistance, the wristband guide, known limits |
+| **A2 poster** | [Documentation/a2-poster.png](Documentation/a2-poster.png) |
+| **Trailer** | the video at the top of this page |
+| **Design proposal** | [Documentation/Friday(team27)_DesignProposal.pdf](Documentation/Friday%28team27%29_DesignProposal.pdf) |
+| **User interviews and analysis** | [Documentation/Interview/](Documentation/Interview/) |
+| **How the design changed** | [Documentation/Design/](Documentation/Design/) |
+| **User testing, rounds 1 and 2** | [Documentation/Evaluation/](Documentation/Evaluation/) and [Prototype Testing and Iteration](Documentation/Prototype%20Testing%20and%20Iteration.md) |
+| **Testing photos and pilot video** | [Documentation/images/](Documentation/images/) |
+| **Task management** | [Documentation/Task-management.md](Documentation/Task-management.md) |
+| **AI acknowledgement** | [Documentation/AI acknowledgement.md](Documentation/AI%20acknowledgement.md) |
 
 `Prototype/` carries the prototype's whole development history: 26 commits,
 about one for each day it changed, from 24 Sep to 24 Oct 2026.
 
 ## Key documentation
 
-- [Design Process Overview](../../wiki/Design-Process-Overview): how the prototype came to be and what testing changed
-- [Ethical Considerations](../../wiki/Ethical-Considerations): the risks we found and what the design does about them
+- [Design Process Overview](../../wiki/Design-process-overview): how the prototype came to be and what testing changed
+- [Ethical Considerations](../../wiki/Ethical-considerations): the risks we found and what the design does about them
 - [How it works](Prototype/docs/how-it-works.md): the four promises and where in the code each one is kept
 - [Abuse resistance](Prototype/docs/abuse-resistance.md): every guard against misuse, each with its test
 - [What is not done](Prototype/docs/not-done.md): known limits and how many people one machine holds
