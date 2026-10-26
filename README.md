@@ -11,7 +11,7 @@ spot to meet. Until then nobody sees your name, your photo or where you are.
 An optional wristband (an M5StickC Plus on a strap) lets you do the same from
 your wrist without taking your phone out in the crowd.
 
-https://github.com/user-attachments/assets/4881ab35-b553-4f08-b1fe-21d7e0aba578
+https://github.com/user-attachments/assets/aa4bd93e-67e8-4b1b-a797-0bc9ed56e5c4
 
 Our A2 poster, with the research, both testing rounds and the theory behind
 the design, is [Documentation/a2-poster.png](Documentation/a2-poster.png).
